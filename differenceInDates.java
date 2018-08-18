@@ -29,24 +29,20 @@ public class DifferenceInDates {
       firstDate = LocalDate.parse(firstInput);
       secondDate = LocalDate.parse(secondInput);  
       
-      // makes sure that the dates are not the same             	 
-      if (!(firstDate.isEqual(secondDate))) {
-    	 
-    	 // computes if firstDate occurs before secondDate
-         if (firstDate.isBefore(secondDate)) {
-            Period p = Period.between(firstDate, secondDate);
-            System.out.println(p.getYears() + "Year(s), " + p.getMonths() + " month(s), " + p.getDays() + " day(s)");
-         }
-         // computes if secondDate occurs before firstDate
-         else {
-            Period p = Period.between(secondDate, firstDate);
-            System.out.println(p.getYears() + "Year(s), " + p.getMonths() + " month(s), " + p.getDays() + " day(s)");
-         }
+      // computes if firstDate occurs before secondDate
+      if (firstDate.isBefore(secondDate)) {
+         Period p = Period.between(firstDate, secondDate);
+         System.out.println(p.getYears() + "Year(s), " + p.getMonths() + " month(s), " + p.getDays() + " day(s)");
+      }
+      // computes if secondDate occurs before firstDate
+      else if (firstDate.isAfter(secondDate)) {
+         Period p = Period.between(secondDate, firstDate);
+         System.out.println(p.getYears() + "Year(s), " + p.getMonths() + " month(s), " + p.getDays() + " day(s)");
       }
       // prints if the two dates are the same   
       else {
     	 System.out.println("Dates are the same!");
-    	 }       
+      }       
    scnr.close();
    }
 }   
