@@ -1,48 +1,35 @@
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Scanner;
-
+   
    /*
-     This program calculates the difference between two dates from user 
-     in years, months and days.
+     This program calculates the difference between two dates from user in years, months and days.
      
      Author: Mariah Hall
      Date:   August 16th, 2018
    */
 
-public class differenceInDates {
+public class DifferenceInDates {
    public static void main(String[] args) {
    	
       Scanner scnr = new Scanner(System.in);
-      LocalDate firstDate;
-      LocalDate secondDate;
-      int yearOne;
-      int yearTwo;
-      int monthOne;
-      int monthTwo;
-      int dayOne;
-      int dayTwo;
+      String firstInput;    // user's first input date
+      String secondInput;   // user's second input date
+      LocalDate firstDate;  // converted from String firstInput to count the difference
+      LocalDate secondDate; // converted from String secondInput to count the difference
 
-      // FIXME: figure out how to read separate Ints for MM DD and YYYY
-      System.out.println("Please enter the first date (MM/DD/YYYY): ");
-      monthOne = scnr.nextInt();
-      dayOne = scnr.nextInt();
-      yearOne = scnr.nextInt();
+      // get user Input
+      System.out.println("Please enter the first date (YYYY-MM-DD): ");
+      firstInput = scnr.nextLine();
    
-      System.out.println("Please enter the second date (MM DD YYYY): ");
-      monthTwo = scnr.nextInt();
-      dayTwo = scnr.nextInt();
-      yearTwo = scnr.nextInt();
+      System.out.println("Please enter the second date (YYYY-MM-DD): ");
+      secondInput = scnr.nextLine();
       
-      // creating LocalDates from user input
-      firstDate = LocalDate.of(yearOne, monthOne, dayOne);
-      System.out.println(firstDate);
-   
-      secondDate = LocalDate.of(yearTwo, monthTwo, dayTwo);
-      System.out.println(secondDate);
+      // creates LocalDates from user input
+      firstDate = LocalDate.parse(firstInput);
+      secondDate = LocalDate.parse(secondInput);  
       
-      // FIXME: figure out how to validate date given
-   
+      // makes sure that the dates are not the same             	 
       if (!(firstDate.isEqual(secondDate))) {
     	 
     	 // computes if firstDate occurs before secondDate
@@ -51,18 +38,15 @@ public class differenceInDates {
             System.out.println(p.getYears() + "Year(s), " + p.getMonths() + " month(s), " + p.getDays() + " day(s)");
          }
          // computes if secondDate occurs before firstDate
-         else if (firstDate.isAfter(secondDate)) {
+         else {
             Period p = Period.between(secondDate, firstDate);
             System.out.println(p.getYears() + "Year(s), " + p.getMonths() + " month(s), " + p.getDays() + " day(s)");
          }
       }
       // prints if the two dates are the same   
-      else if (firstDate.isEqual(secondDate)) {
-    	    System.out.println("Dates are the same!");
-      }
       else {
-         System.out.println("Error: dates are not valid! Try again.");
-      } 
-   scnr.close();      
+    	 System.out.println("Dates are the same!");
+    	 }       
+   scnr.close();
    }
 }   
